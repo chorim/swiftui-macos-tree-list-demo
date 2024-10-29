@@ -11,14 +11,22 @@ struct Node: View {
     @EnvironmentObject var appModel: AppModel
     @StateObject var parent: Item
 
+    // macwindow = Window
+    
+    // gray background 일단 만들고 안에 넣는다.
+    // View == rectangle
+    // square.on.square == Hosting View
+    
+    // Constraints == squared.dotted 안에 square
+    
     var body: some View {
         ForEach(parent.children ?? []) { (childItem: Item) in
             Group {
                 if childItem.isFolder == false {
                     Label(childItem.name, systemImage: "doc.text")
-                        .onDrag {
-                            appModel.providerEncode(id: childItem.id)
-                        }
+                        // .onDrag {
+                        //     appModel.providerEncode(id: childItem.id)
+                        // }
 
                 } else {
                     Parent(item: childItem)

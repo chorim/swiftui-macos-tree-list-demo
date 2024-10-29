@@ -26,15 +26,16 @@ struct Parent: View {
                     Label(item.name, systemImage: "folder.badge.questionmark")
                 } else {
                     Label(item.name, systemImage: "folder")
-                        .onDrag {
-                            appModel.providerEncode(id: item.id)
-                        }
+                        // .onDrag {
+                        //     appModel.providerEncode(id: item.id)
+                        // }
                 }
             }
             .onDrop(of: [.text], delegate: self)
-        }
-        .onTapGesture() {
-            isExpanded.toggle()
+            .onTapGesture() {
+                guard (item.children?.isEmpty ?? true) == false else { return }
+                isExpanded.toggle()
+            }
         }
     }
 
